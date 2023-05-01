@@ -6,3 +6,27 @@
   background-image: url('../public/bg.png');
   background-size: cover;
 }
+
+.container {
+  margin-top: 10vh;
+  display: grid;
+  grid-template-columns: 3fr 0fr;
+  grid-gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.container-item {
+  background-color: #ff0000;
+  box-sizing: border-box;
+}
+
+.edit{
+
+}
+
+.preview{
+  background-color: #00000000;
+
+}

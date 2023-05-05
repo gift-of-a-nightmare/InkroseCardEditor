@@ -1,14 +1,58 @@
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import placeholderArt from './assets/author.png'
+import Card from './Card.js';
+import {SymbolText} from './SymbolText';
 
 function App() {
+  const st = new SymbolText();
+  const [card, setCard] = useState(new Card("The Chaos Blossom", "{1} {C} {M}", "Portrait?", 4, 2, [], "It's not even a rose.", "One of many to come.", "Inkcredible.", "ALPHA01", 0))
+  
+  // Uploaded by the creator
+  const [cardArt, setCardArt] = useState(placeholderArt);
+
+  // Not every card has stats. {Power/Health}
+  // If a card doesn't have stats, these will not be shown.
+  const [hasStats, setHasStates] = useState(false);
+
+  // Cards can have anywhere from 0 to 3 sigils.
+  // The banner decreases or increases in size depending on the amount of sigils present on the card.
+  // Sigils are user uploaded.
+  const [sigils, setSigils] = useState(0);
+
+  const test = "{SECRET} {T} test {NYA}"
+  console.log(st.translate(test));
+
   return (
     <div className='app'>
       <div className='container'>
         <div className='container-item edit'>
-          <p>VALUES: Name, Cost, Art, Type, Sub-type, (power / toughness), (sigils), text1, text2, flavour text, card ID</p>
+          {/* CONTROLS GO HERE */}
         </div>
         <div className='container-item preview'>
-          <img src='/frame.png' alt="card frame"/>
+          <div className='card-overlay'>
+
+            {/* CUSTOM CARD VARIABLES GO HERE  */}
+            <div className='card-name'> <div>{card.getName()}</div> </div>
+            <div className='card-cost'> {st.translate(card.getCost())} </div>
+            <div className='card-art'> <img src={cardArt}></img> </div>
+            <div className='card-type'> <div>{card.getType()}</div> </div>
+
+            <div className='card-power'> </div>
+            <div className='card-health'> </div>
+
+
+            <div className='card-text-primary'> </div>
+            <div className='card-text-secondary'> </div>
+            <div className='card-text-flavour'> </div>
+
+
+            <div className='card-id'> </div>
+            <div className='card-rarity'> </div>
+          </div>
+
+          <img className='card-wobble' src='/wobbles/MY-M.png' alt='card wobble'></img>
+          <img className='card-frame' src='/frame.png' alt="card frame"/>
         </div>
       </div>
     </div>

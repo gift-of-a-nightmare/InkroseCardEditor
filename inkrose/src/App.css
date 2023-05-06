@@ -49,13 +49,14 @@
 .card-cost{
   top: 2px;
   width: 165px;
-  left: 208px;
+  left: 185px;
   position: absolute;
   z-index: 3;
 }
 
 .card-cost img {
-  height: 50px;
+  float: right;
+  height: 40px;
 }
 
 .card-art {
@@ -78,6 +79,7 @@
 
 .card-type{
   position:absolute;
+  width: 315px;
   top: 290px;
   left: 30px;
   z-index: 5;

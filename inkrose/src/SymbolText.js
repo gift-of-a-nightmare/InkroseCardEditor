@@ -36,9 +36,7 @@ export class SymbolText {
     '{Y}': <img src={Y} alt="Y" />,
     '{K}': <img src={K} alt="K" />
   }
-
-  // Regular expression to match all keys in the map
-  symbolRegex = new RegExp(`(${Object.keys(this.map).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g')
+  symbolRegex = new RegExp(`(${Object.keys(this.map).map(x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g')
   translate(input) {
     return (
       <Fragment>

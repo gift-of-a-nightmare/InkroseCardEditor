@@ -25,51 +25,7 @@ export default class Card {
         this.rarity = rarity;
     }
 
-    getName() {
-        return this.name;
-      }
-    
-      getCost() {
-        return this.cost;
-      }
-    
-      getType() {
-        return this.type;
-      }
-    
-      getPower() {
-        return this.power;
-      }
-    
-      getHealth() {
-        return this.health;
-      }
-    
-      getSigils() {
-        return this.sigils;
-      }
-    
-      getTextPrimary() {
-        return this.textPrimary;
-      }
-    
-      getTextSecondary() {
-        return this.textSecondary;
-      }
-    
-      getTextFlavour() {
-        return this.textFlavour;
-      }
-    
-      getCardId() {
-        return this.cardId;
-      }
-    
-      getRarity() {
-        return this.rarity;
-      }
-    
-      toString() {
-        return `${this.name} (${this.cost}) [${this.type}]`;
-      }
+    toString() {
+      return `${this.name} (${this.cost}) [${this.type}]`;
+    }
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import './App.css';
 import cardStatAsset from './assets/card/ph.png'
 import placeholderArt from './assets/author.png'
@@ -8,9 +8,11 @@ import {SymbolText} from './SymbolText';
 import CardStatEditor from './CardStatEditor';
 import CardWobbleEditor from './CardWobbleEditor';
 import CardAssetEditor from './CardAssetEditor';
+import exportAsImage from './ExportAsImage';
 
 function App() {
   const st = new SymbolText();
+  const canvas = useRef();
   const [card, setCard] = useState(new Card("The Author", "{K}{Y}{M}{C}{1}", "Prime Portrait - Alpha Omega", 4, 2, [], "It's not even a rose.", "One of many to come.", "Inkcredible.", "ALPHA01", 0))
   
   // Uploaded by the creator
@@ -32,17 +34,20 @@ function App() {
 
           <CardStatEditor card={card} setCard={setCard}/>
           <CardWobbleEditor wobble={wobble} setWobble={setWobble}/>
+          <br/>
+          <button onClick={() => exportAsImage(canvas.current, card.name)}>YOU_DONT_HAVE_TO_SMILE</button>
 
         </div>
 
         <div className='container-item'>
           <CardAssetEditor setCardArt={setCardArt}/>
-
         </div>
 
+        <div ref={canvas} id="canvas" className='container-item preview'>
 
-        <div className='container-item preview'>
+          <div >
 
+          </div>
           <div className='card-overlay'>
           <img className='card-wobble' src={wobble} alt='card-wobble'></img>
 
@@ -63,12 +68,9 @@ function App() {
             </div>
             }
 
-
-
             <div className='card-text-primary'> </div>
             <div className='card-text-secondary'> </div>
             <div className='card-text-flavour'> </div>
-
 
             <div className='card-id'> </div>
             <div className='card-rarity'> </div>

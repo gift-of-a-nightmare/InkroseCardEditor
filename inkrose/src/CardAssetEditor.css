@@ -1,0 +1,17 @@
+.asset-editor label{
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.sigil-container {
+    max-height: 300px;
+    overflow: scroll;
+}
+
+.sigil-container img {
+    background-color: #ffffff42;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    border-radius: 10px;
+}

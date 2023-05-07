@@ -16,7 +16,7 @@
 .container {
   margin-top: 10vh;
   display: grid;
-  grid-template-columns: 3fr 0fr;
+  grid-template-columns: 1.5fr 1.5fr 0fr;
   grid-gap: 20px;
   padding: 20px;
   box-sizing: border-box;
@@ -25,12 +25,7 @@
 
 .container-item {
   box-sizing: border-box;
-}
-
-.edit {
   background-color: #FFFFFF30;
-  border-radius: 10px;
-
 }
 
 .preview{
@@ -57,7 +52,7 @@
   width: 165px;
   left: 185px;
   position: absolute;
-  z-index: 3;
+  z-index: 5;
 }
 
 .card-cost img {
@@ -72,15 +67,19 @@
   left: 27px;
   width: 318px;
   height: 242px;
+  z-index: 1;
 }
 
 .card-art img {
+  position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 0;
 }
 
 .card-wobble {
   position: absolute;
+  z-index: 3;
 }
 
 .card-type{
@@ -90,3 +89,4 @@
   left: 30px;
   z-index: 5;
 }
+

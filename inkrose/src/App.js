@@ -1,37 +1,49 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import placeholderArt from './assets/author.png'
+import placeholderWobble from './assets/wobbles/MY-M.png'
 import Card from './Card.js';
 import {SymbolText} from './SymbolText';
-import CardEditor from './CardEditor';
+import CardStatEditor from './CardStatEditor';
+import CardWobbleEditor from './CardWobbleEditor';
+import CardAssetEditor from './CardAssetEditor';
 
 function App() {
   const st = new SymbolText();
-  const [card, setCard] = useState(new Card("The Chaos Blossom", "{K}{Y}{M}{C}{1}", "Portrait?", 4, 2, [], "It's not even a rose.", "One of many to come.", "Inkcredible.", "ALPHA01", 0))
+  const [card, setCard] = useState(new Card("The Author", "{K}{Y}{M}{C}{1}", "Prime Portrait - Alpha Omega", 4, 2, [], "It's not even a rose.", "One of many to come.", "Inkcredible.", "ALPHA01", 0))
   
   // Uploaded by the creator
   const [cardArt, setCardArt] = useState(placeholderArt);
 
-  // Not every card has stats. {Power/Health}
-  // If a card doesn't have stats, these will not be shown.
-  const [hasStats, setHasStates] = useState(false);
+  // Wobbles are little inky spots on the card, colour identity I think.
+  const [wobble, setWobble] = useState(placeholderWobble)
 
   // Cards can have anywhere from 0 to 3 sigils.
   // The banner decreases or increases in size depending on the amount of sigils present on the card.
   // Sigils are user uploaded.
-  const [sigils, setSigils] = useState(0);
+  const [sigils, setSigils] = useState([]);
 
   return (
     <div className='app'>
       <div className='container'>
-        <div className='container-item edit'>
+        <div className='container-item'>
           {/* CONTROLS GO HERE */}
 
-          <CardEditor card={card} setCard={setCard}/>
+          <CardStatEditor card={card} setCard={setCard}/>
+          <CardWobbleEditor wobble={wobble} setWobble={setWobble}/>
 
         </div>
+
+        <div className='container-item'>
+          <CardAssetEditor setCardArt={setCardArt}/>
+
+        </div>
+
+
         <div className='container-item preview'>
+
           <div className='card-overlay'>
+          <img className='card-wobble' src={wobble} alt='card-wobble'></img>
 
             {/* CUSTOM CARD VARIABLES GO HERE  */}
             <div className='card-name'> <div>{card.name}</div> </div>
@@ -39,8 +51,15 @@ function App() {
             <div className='card-art'> <img src={cardArt}></img> </div>
             <div className='card-type'> <div>{card.type}</div> </div>
 
-            <div className='card-power'> </div>
-            <div className='card-health'> </div>
+
+            {(card.health && card.power) &&
+            <div className='card-stats'>
+                <div className='card-power'>{card.power}</div>
+                <div className='card-health'>{card.health}</div>
+                <img />
+            </div>
+            }
+
 
 
             <div className='card-text-primary'> </div>
@@ -52,8 +71,7 @@ function App() {
             <div className='card-rarity'> </div>
           </div>
 
-          <img className='card-wobble' src='/wobbles/MY-M.png' alt='card wobble'></img>
-          <img className='card-frame' src='/frame.png' alt="card frame"/>
+          <img className='card-frame' src='/frame.png' alt="card-frame"/>
         </div>
       </div>
     </div>

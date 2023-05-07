@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import './CardStatEditor.css'
 
 export default function CardEditor ({card, setCard}) {
+
     const [formData, setFormData] = useState({
         name: card.name,
         cost: card.cost,
@@ -34,7 +36,7 @@ export default function CardEditor ({card, setCard}) {
     };
 
     return (
-        <div>
+        <div className='editor'>
             <label>
                 Name:
                 <input type="text" name="name" value={formData.name} onChange={handleInputChange} />

@@ -25,7 +25,8 @@
 
 .container-item {
   box-sizing: border-box;
-  background-color: #FFFFFF30;
+  border-radius: 10px;
+  background-color: #ffffff98;
 }
 
 .preview{
@@ -90,3 +91,23 @@
   z-index: 5;
 }
 
+.card-stats-asset{
+  position: absolute;
+  z-index: 1;
+}
+
+.card-power{
+  position: absolute;
+  z-index: 2;
+  top: 241px;
+  left: 30px;
+  font-size: 25px;
+}
+
+.card-health{
+  position: absolute;
+  z-index: 2;
+  top: 241px;
+  left: 324px;
+  font-size: 25px;
+}

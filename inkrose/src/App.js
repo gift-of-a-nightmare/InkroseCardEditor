@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
+import cardStatAsset from './assets/card/ph.png'
 import placeholderArt from './assets/author.png'
 import placeholderWobble from './assets/wobbles/MY-M.png'
 import Card from './Card.js';
@@ -53,10 +54,12 @@ function App() {
 
 
             {(card.health && card.power) &&
-            <div className='card-stats'>
-                <div className='card-power'>{card.power}</div>
-                <div className='card-health'>{card.health}</div>
-                <img />
+            <div>
+              <img className='card-stats-asset' src={cardStatAsset}/>
+              <div>
+                  <div className='card-power'>{card.power}</div>
+                  <div className='card-health'>{card.health}</div>
+              </div>
             </div>
             }
 

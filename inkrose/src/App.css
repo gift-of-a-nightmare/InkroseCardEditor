@@ -24,7 +24,7 @@
 
 .container-item {
   box-sizing: border-box;
-    background-color: #ffffff98;
+  background-color: #ffffff98;
 }
 
 .card-overlay{
@@ -111,4 +111,50 @@
 
 .card-frame {
   z-index: 0;
+}
+
+.card-text-box{
+  text-align: center;
+  left:28px;
+  top:328px;
+  width: 317px;
+  height: 175px;
+  position: absolute;
+}
+
+.sigil-box {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+}
+
+.card-text-container {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.card-text-primary {
+  display: grid;
+  background-color: purple;
+}
+
+.card-text-secondary {
+  display: grid;
+  background-color: red;
+}
+
+.card-text-flavour {
+  display: grid;
+  background-color: blue;
+}
+
+.card-id {
+  position: absolute;
+  transform: rotate(270deg);
+  left: 330px;
+  top: 399px;
+  font-size: 14px;
 }

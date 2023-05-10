@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './CardAssetEditor.css'
 
-function CardAssetEditor({setCardArt}) {
+function CardAssetEditor({setCardArt, setCardSigils}) {
 
     // Contains the image of a sigil, and whether or not it has been added to the card.
     // [{IMG, TRUE/FALSE}]
-    const [sigils, setSigils] = useState([]);
+    const [sigils, setEditorSigils] = useState([]);
+
+    useEffect(() => {
+        let current = sigils.filter(s => s.selected);
+        setCardSigils(current);
+    }, [sigils])
 
     function handleArtUpload(event) {
         const file = event.target.files[0];
@@ -24,7 +29,7 @@ function CardAssetEditor({setCardArt}) {
             const updatedArray = sigils.map((s, i) =>
                 i === index ? { ...s, selected: !s.selected } : s
             );
-            setSigils(updatedArray);
+            setEditorSigils(updatedArray);
         }
     }
 
@@ -44,7 +49,7 @@ function CardAssetEditor({setCardArt}) {
             sigils.push(s);
     
             if (sigils.length === files.length) {
-            setSigils(sigils);
+            setEditorSigils(sigils);
             }
         };
     

@@ -36,11 +36,13 @@ function App() {
           <CardWobbleEditor wobble={wobble} setWobble={setWobble}/>
           <br/>
           <button onClick={() => exportAsImage(canvas.current, card.name)}>YOU_DONT_HAVE_TO_SMILE</button>
+          <br/>
+          <label>{sigils.length}</label>
 
         </div>
 
         <div className='container-item'>
-          <CardAssetEditor setCardArt={setCardArt}/>
+          <CardAssetEditor setCardArt={setCardArt} setCardSigils={setSigils}/>
         </div>
 
         <div ref={canvas} id="canvas" className='container-item preview'>
@@ -68,12 +70,44 @@ function App() {
             </div>
             }
 
-            <div className='card-text-primary'> </div>
-            <div className='card-text-secondary'> </div>
-            <div className='card-text-flavour'> </div>
 
-            <div className='card-id'> </div>
-            <div className='card-rarity'> </div>
+
+            <div className='card-text-box'>
+              <div className='card-text-container'>
+
+                <div style={{gridTemplateColumns: sigils.length > 0 ? "1fr 4fr" : "1fr"}} className='card-text-primary'>
+                  {(sigils.length > 0) &&
+                    <div className="sigil-box"/>
+                  }
+                  <div>
+                    {card.textPrimary}
+                  </div>
+                </div>
+
+                <div style={{gridTemplateColumns: sigils.length > 1 ? "1fr 4fr": "1fr"}} className='card-text-secondary'>
+                  {(sigils.length > 1) &&
+                    <div className="sigil-box"/>
+                  }
+                  <div>
+                    {card.textSecondary}
+                  </div>
+                </div>
+
+                <div style={{gridTemplateColumns: sigils.length > 2 ? "1fr 4fr": "1fr"}} className='card-text-flavour'>
+                  {(sigils.length > 2) &&
+                    <div className="sigil-box"/>
+                  }
+                  <div>
+                    {card.textFlavour}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div className='card-id'>{card.cardId}</div>
+            <div className='card-rarity'></div>
           </div>
 
           <img className='card-frame' src='/frame.png' alt="card-frame"/>

@@ -10,6 +10,11 @@ import CardWobbleEditor from './CardWobbleEditor';
 import CardAssetEditor from './CardAssetEditor';
 import exportAsImage from './ExportAsImage';
 
+// Banner assets to put sigils on
+import bannerOne from './assets/card/1glyph.png';
+import bannerTwo from './assets/card/2glyph.png';
+import bannerThree from './assets/card/3glyph.png';
+
 function App() {
   const st = new SymbolText();
   const canvas = useRef();
@@ -25,6 +30,19 @@ function App() {
   // The banner decreases or increases in size depending on the amount of sigils present on the card.
   // Sigils are user uploaded.
   const [sigils, setSigils] = useState([]);
+  
+  const [banner, setBanner] = useState(bannerOne);
+
+  useEffect(() => {
+    switch (sigils.length){
+      case 1: setBanner(bannerOne)
+        break;
+      case 2: setBanner(bannerTwo)
+        break;
+      case 3: setBanner(bannerThree)
+        break;
+    }
+  }, [sigils])
 
   return (
     <div className='app'>
@@ -51,7 +69,21 @@ function App() {
 
           </div>
           <div className='card-overlay'>
-          <img className='card-wobble' src={wobble} alt='card-wobble'></img>
+          <img className='card-wobble' src={wobble} alt='card-wobble'/>
+
+          {/* Only show the banner if the card actually has sigils. */}
+          {sigils.length > 0 &&
+          
+          <div> 
+            <img className='card-banner' src={banner}/>
+            <div className='card-sigils'>
+              <img src={sigils[0].image}/> 
+              {sigils.length > 1 && <img src={sigils[1].image}/>}
+              {sigils.length > 2 && <img src={sigils[2].image}/>}
+            </div>
+          </div>
+          }
+          
 
             {/* CUSTOM CARD VARIABLES GO HERE  */}
             <div className='card-name'> <div>{card.name}</div> </div>

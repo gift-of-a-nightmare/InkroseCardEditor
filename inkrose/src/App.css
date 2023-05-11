@@ -74,12 +74,6 @@
   height: 100%;
   z-index: 0;
 }
-
-.card-wobble {
-  position: absolute;
-  z-index: 3;
-}
-
 .card-type{
   position:absolute;
   width: 315px;
@@ -123,7 +117,6 @@
 }
 
 .sigil-box {
-  background-color: black;
   height: 100%;
   width: 100%;
 }
@@ -133,22 +126,19 @@
   width: 100%;
 
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1.3fr 0.4fr;
 }
 
 .card-text-primary {
   display: grid;
-  background-color: purple;
 }
 
 .card-text-secondary {
   display: grid;
-  background-color: red;
 }
 
 .card-text-flavour {
   display: grid;
-  background-color: blue;
 }
 
 .card-id {
@@ -157,4 +147,30 @@
   left: 330px;
   top: 399px;
   font-size: 14px;
+}
+
+.card-wobble {
+  position: absolute;
+  z-index: 3;
+}
+
+.card-banner {
+  position: absolute;
+  z-index: 3;
+}
+
+.card-sigils {
+  position: absolute;
+  z-index: 4;
+  top: 323px;
+  left: 29px;
+  width: 60px;
+  height: 180px;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.card-sigils img {
+  width: 100%;
 }

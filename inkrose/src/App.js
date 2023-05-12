@@ -18,7 +18,7 @@ import bannerThree from './assets/card/3glyph.png';
 function App() {
   const st = new SymbolText();
   const canvas = useRef();
-  const [card, setCard] = useState(new Card("The Author", "{K}{Y}{M}{C}{1}", "Prime Portrait - Alpha Omega", 4, 2, [], "It's not even a rose.", "One of many to come.", "Inkcredible.", "ALPHA01", 0))
+  const [card, setCard] = useState(new Card("The Author", "{K}{Y}{M}{C}{1}", "Prime Portrait - Alpha Omega", 4, 2, [], "Sacrifice self: Gain {K} {K}.", "When another portrait enters the battlefield, you may pay {K}, if you do, copy it.", "'It's all coming up roses...'", "ALPHA01", 0))
   
   // Uploaded by the creator
   const [cardArt, setCardArt] = useState(placeholderArt);
@@ -53,7 +53,7 @@ function App() {
           <CardStatEditor card={card} setCard={setCard}/>
           <CardWobbleEditor wobble={wobble} setWobble={setWobble}/>
           <br/>
-          <button onClick={() => exportAsImage(canvas.current, card.name)}>YOU_DONT_HAVE_TO_SMILE</button>
+          <button onClick={() => exportAsImage(canvas.current, card.name)}>YOU DONT HAVE TO SMILE</button>
           <br/>
           <label>{sigils.length}</label>
 
@@ -112,7 +112,7 @@ function App() {
                     <div className="sigil-box"/>
                   }
                   <div>
-                    {card.textPrimary}
+                    {st.translate(card.textPrimary)}
                   </div>
                 </div>
 
@@ -121,7 +121,7 @@ function App() {
                     <div className="sigil-box"/>
                   }
                   <div>
-                    {card.textSecondary}
+                    {st.translate(card.textSecondary)}
                   </div>
                 </div>
 

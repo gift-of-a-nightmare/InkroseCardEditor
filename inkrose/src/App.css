@@ -90,17 +90,21 @@
 .card-power{
   position: absolute;
   z-index: 2;
-  top: 241px;
-  left: 30px;
+  top: 245px;
+  left: 10px;
   font-size: 25px;
+  text-align: center;
+  width: 60px;
 }
 
 .card-health{
   position: absolute;
   z-index: 2;
   top: 241px;
-  left: 324px;
+  left: 300px;
   font-size: 25px;
+  text-align: center;
+  width: 60px;
 }
 
 .card-frame {

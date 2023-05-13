@@ -184,3 +184,7 @@
 .card-sigils img {
   width: 100%;
 }
+
+.controls div {
+  padding: 5px;
+}

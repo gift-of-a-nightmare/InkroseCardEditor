@@ -18,7 +18,7 @@ import bannerThree from './assets/card/3glyph.png';
 function App() {
   const st = new SymbolText();
   const canvas = useRef();
-  const [card, setCard] = useState(new Card("The Author", "{K}{Y}{M}{C}{1}", "Prime Portrait - Alpha Omega", 4, 2, [], "Sacrifice self: Gain {K} {K}.", "When another portrait enters the battlefield, you may pay {K}, if you do, copy it.", "'It's all coming up roses...'", "ALPHA01", 0))
+  const [card, setCard] = useState(new Card("The Author", "{K}{Y}{M}{C}{1}", "Prime Portrait - Alpha Omega", 4, 2, [], "{DR}: Gain {K} {K}.", "When another portrait enters the battlefield, you may pay {K}, if you do, copy it.", "'It's all coming up roses...'", "ALPHA01", 0))
   
   // Uploaded by the creator
   const [cardArt, setCardArt] = useState(placeholderArt);
@@ -30,8 +30,13 @@ function App() {
   // The banner decreases or increases in size depending on the amount of sigils present on the card.
   // Sigils are user uploaded.
   const [sigils, setSigils] = useState([]);
-  
   const [banner, setBanner] = useState(bannerOne);
+
+  // Text sizes for both fonts and symbols.
+  // 0 - Primary
+  // 2 - Secondary
+  // 4 - Flavour
+  const [textSize, setTextSize] = useState([16, 16, 16])
 
   useEffect(() => {
     switch (sigils.length){
@@ -47,16 +52,33 @@ function App() {
   return (
     <div className='app'>
       <div className='container'>
-        <div className='container-item'>
+        <div className='container-item controls'>
           {/* CONTROLS GO HERE */}
 
-          <CardStatEditor card={card} setCard={setCard}/>
+          <CardStatEditor card={card} setCard={setCard} setTextSizes={setTextSize}/>
           <CardWobbleEditor wobble={wobble} setWobble={setWobble}/>
-          <br/>
-          <button onClick={() => exportAsImage(canvas.current, card.name)}>YOU DONT HAVE TO SMILE</button>
-          <br/>
-          <label>{sigils.length}</label>
 
+          {textSize.map((size, index) => (
+            <div>
+                <label key={index}>
+                  <span> size {index + 1}: {size}px</span>
+                  <input
+                    type="range"
+                    min="12" 
+                    max="100"
+                    value={size}
+                    onChange={(event) => {
+                      const newValue = [...textSize];
+                      newValue[index] = parseInt(event.target.value);
+                      setTextSize(newValue);
+                    }}
+                  />
+                </label>
+              <br/>
+            </div>
+          ))}
+          
+          <button onClick={() => exportAsImage(canvas.current, card.name)}>YOU DONT HAVE TO SMILE</button>
         </div>
 
         <div className='container-item'>
@@ -87,7 +109,7 @@ function App() {
 
             {/* CUSTOM CARD VARIABLES GO HERE  */}
             <div className='card-name'> <div>{card.name}</div> </div>
-            <div className='card-cost'> {st.translate(card.cost)} </div>
+            <div className='card-cost'> {st.translate(card.cost, 30)} </div>
             <div className='card-art'> <img src={cardArt}></img> </div>
             <div className='card-type'> <div>{card.type}</div> </div>
 
@@ -102,30 +124,28 @@ function App() {
             </div>
             }
 
-
-
             <div className='card-text-box'>
               <div className='card-text-container'>
 
-                <div style={{gridTemplateColumns: sigils.length > 0 ? "1fr 4fr" : "1fr"}} className='card-text-primary'>
+                <div style={{gridTemplateColumns: sigils.length > 0 ? "1fr 4fr" : "1fr", fontSize: textSize[0]}} className='card-text-primary'>
                   {(sigils.length > 0) &&
                     <div className="sigil-box"/>
                   }
                   <div>
-                    {st.translate(card.textPrimary)}
+                    {st.translate(card.textPrimary, (textSize[0] * 2))}
                   </div>
                 </div>
 
-                <div style={{gridTemplateColumns: sigils.length > 1 ? "1fr 4fr": "1fr"}} className='card-text-secondary'>
+                <div style={{gridTemplateColumns: sigils.length > 1 ? "1fr 4fr": "1fr", fontSize: textSize[1]}} className='card-text-secondary'>
                   {(sigils.length > 1) &&
                     <div className="sigil-box"/>
                   }
                   <div>
-                    {st.translate(card.textSecondary)}
+                    {st.translate(card.textSecondary, (textSize[1] * 2))}
                   </div>
                 </div>
 
-                <div style={{gridTemplateColumns: sigils.length > 2 ? "1fr 4fr": "1fr"}} className='card-text-flavour'>
+                <div style={{gridTemplateColumns: sigils.length > 2 ? "1fr 4fr": "1fr", fontSize: textSize[2]}} className='card-text-flavour'>
                   {(sigils.length > 2) &&
                     <div className="sigil-box"/>
                   }

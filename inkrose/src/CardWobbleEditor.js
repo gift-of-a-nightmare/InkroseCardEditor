@@ -4,8 +4,13 @@ export default function CardWobbleEditor({wobble, setWobble}) {
 
     // Get all the PNG files inside the "wobbles" folder
     const w = require.context('./assets/wobbles', true, /\.png$/);
-    // Import all the PNG files and store them in an array
     const wobbles = w.keys().map(w);
+    const names = []
+
+    w.keys().forEach((w, index) => {
+      let result = w.replace(/^\.\//, "").replace(/\.png$/, "");
+      names[index] = result;
+    })
 
     // Handler function for selecting a wobble
     const handleWobbleSelect = (event) => {
@@ -18,7 +23,7 @@ export default function CardWobbleEditor({wobble, setWobble}) {
           <select id="wobble-select" onChange={handleWobbleSelect}>
             {wobbles.map((wobble, index) => (
               <option key={wobble} value={wobble}>
-                {"Wobble " + index}
+                {names[index]}
               </option>
             ))}
           </select>

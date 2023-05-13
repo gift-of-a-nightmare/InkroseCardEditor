@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './CardStatEditor.css'
 
 export default function CardEditor ({card, setCard}) {
 

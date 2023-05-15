@@ -81,11 +81,6 @@ export default function CardEditor ({card, setCard}) {
                 <input type="text" name="cardId" value={formData.cardId} onChange={handleInputChange} />
             </label>
             <br />
-            <label>
-                Rarity:
-                <input type="text" name="rarity" value={formData.rarity} onChange={handleInputChange} />
-            </label>
-            <br />
         </div>
     );
 }

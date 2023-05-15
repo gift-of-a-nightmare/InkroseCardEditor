@@ -163,7 +163,7 @@
   overflow: hidden;
 }
 
-.card-wobble {
+.card-full-overlay {
   position: absolute;
   z-index: 3;
 }

@@ -15,6 +15,12 @@ import bannerOne from './assets/card/1glyph.png';
 import bannerTwo from './assets/card/2glyph.png';
 import bannerThree from './assets/card/3glyph.png';
 
+// Rarities
+import novice from './assets/card/novice.png';
+import adept from './assets/card/adept.png';
+import expert from './assets/card/expert.png';
+import legendary from './assets/card/legendary.png';
+
 function App() {
   const st = new SymbolText();
   const canvas = useRef();
@@ -31,6 +37,15 @@ function App() {
   // Sigils are user uploaded.
   const [sigils, setSigils] = useState([]);
   const [banner, setBanner] = useState(bannerOne);
+
+  // Card rarity, novice to legendary.
+  const rarities = [
+    { value: 'novice', label: 'Novice', image: novice },
+    { value: 'adept', label: 'Adept', image: adept },
+    { value: 'expert', label: 'Expert', image: expert },
+    { value: 'legendary', label: 'Legendary', image: legendary },
+  ];
+  const [rarity, setRarity] = useState(rarities[0].image);
 
   // Text sizes for both fonts and symbols.
   // 0 - Primary
@@ -56,6 +71,18 @@ function App() {
           {/* CONTROLS GO HERE */}
 
           <CardStatEditor card={card} setCard={setCard} setTextSizes={setTextSize}/>
+
+          <div>
+          <label htmlFor="rarity-select">Rarity:</label>
+            <select id="rarity-select" onChange={(event) => {setRarity(rarities.find((rarity) => rarity.value === event.target.value).image)}}>
+              {rarities.map((rarity) => (
+                <option key={rarity.value} value={rarity.value}>
+                  {rarity.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <CardWobbleEditor wobble={wobble} setWobble={setWobble}/>
 
           {textSize.map((size, index) => (
@@ -77,7 +104,7 @@ function App() {
               <br/>
             </div>
           ))}
-          
+
           <button onClick={() => exportAsImage(canvas.current, card.name)}>YOU DONT HAVE TO SMILE</button>
         </div>
 
@@ -91,7 +118,8 @@ function App() {
 
           </div>
           <div className='card-overlay'>
-          <img className='card-wobble' src={wobble} alt='card-wobble'/>
+          <img className='card-full-overlay' src={wobble} alt='card wobble'/>
+          <img className='card-full-overlay' src={rarity} alt='card rarity'/>
 
           {/* Only show the banner if the card actually has sigils. */}
           {sigils.length > 0 &&
